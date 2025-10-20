@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">AI Art</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ms-auto d-flex align-items-center gap-2">
+                {% if current_user.is_authenticated %}
+                    <span class="navbar-text text-light me-3">Welcome, {{ current_user.email }}</span>
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+                    <a href="{{ url_for('order_history') }}" class="btn btn-outline-light btn-sm">History</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-light btn-sm me-2">Register</a>
+                {% endif %}
+                <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                    <i class="bi bi-cart-fill me-1"></i>Cart
+                    <!-- THE FIX IS HERE: Added the 'cart-badge' class -->
+                    <span class="cart-badge badge bg-primary text-white ms-1 rounded-pill">{{ cart_item_count or 0 }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

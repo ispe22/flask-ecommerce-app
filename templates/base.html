@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{% block title %}AI Arts{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+  {{ bootstrap.load_css() }}
+</head>
+<body>
+  
+  <!-- Pass data from Jinja to main.js -->
+  <div id="app-data"
+       data-stripe-key="{{ stripe_publishable_key }}"
+       data-checkout-url="{{ url_for('create_checkout_session') }}"
+       data-cart-html-url="{{ url_for('get_cart_html') }}">
+  </div>
+
+  {% include "header.html" %}
+  {% include "partials/flashes.html" %}
+  
+  {% block content %}{% endblock %}
+
+  {% include "partials/cart_offcanvas.html" %}
+
+  {{ bootstrap.load_js() }}
+  <script src="https://js.stripe.com/v3/"></script>
+  <!-- Link main.js -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
