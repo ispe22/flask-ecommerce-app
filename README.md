@@ -2,6 +2,8 @@
 
 **Live Demo:** [https://ecommerce-zawu.onrender.com](https://ecommerce-zawu.onrender.com)
 
+*Note: The live website may take a minute to deploy due to Render's free-tier cold start.*
+
 A full-stack e-commerce web application built with Python and the Flask framework. This project demonstrates a complete, deployable online store with user authentication, a dynamic shopping cart, and a real payment integration using Stripe.
 
 
